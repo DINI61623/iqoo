@@ -54,7 +54,7 @@ export const Smart: React.FC = () => {
 
   const handleApply = () => {
     applySmartSetup(activeSmartActivity);
-    setToastMessage(`Your iQOO 15 is now optimized for ${currentActivityData.title}!`);
+    setToastMessage(`${currentActivityData.title} Quest optimized (Prototype Simulation)`);
     setTimeout(() => setToastMessage(null), 3500);
   };
 
@@ -133,7 +133,7 @@ export const Smart: React.FC = () => {
           {isCurrentActive ? (
             <div className="setup-active-badge-large font-tech">
               <CheckCircle2 size={16} />
-              <span>QUEST ACTIVE ON DEVICE</span>
+              <span>{currentActivityData.title} Quest optimized</span>
             </div>
           ) : (
             <button
@@ -208,7 +208,7 @@ export const Smart: React.FC = () => {
               onClick={handleApply}
             >
               <Check size={16} />
-              <span>{isCurrentActive ? 'Quest Optimized & Active' : 'Optimize My Quest'}</span>
+              <span>{isCurrentActive ? `${currentActivityData.title} Quest Optimized` : 'Optimize My Quest'}</span>
             </button>
 
             <button

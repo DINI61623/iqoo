@@ -3752,7 +3752,7 @@
   max-width: 440px;
 }
 
-/* Responsive Grid Adapters for 1440x900, 1366x768 & 1280x800 */
+/* Responsive Grid Adapters */
 @media (max-width: 1440px) {
   .quests-horizontal-selector-grid {
     grid-template-columns: repeat(4, 1fr);
@@ -3761,7 +3761,7 @@
 
 @media (max-width: 1366px) {
   .hero-main-title {
-    font-size: 44px;
+    font-size: 42px;
   }
   .large-modules-grid {
     gap: 14px;
@@ -3806,3 +3806,644 @@
     display: none;
   }
 }
+
+/* TABLET & IPAD BREAKPOINT (<= 1024px) */
+@media (max-width: 1024px) {
+  .desktop-screen-page {
+    width: 100%;
+    box-sizing: border-box;
+  }
+  
+  .quests-horizontal-selector-grid {
+    display: flex;
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    gap: 10px;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x mandatory;
+    padding-bottom: 8px;
+  }
+
+  .activity-choice-card {
+    min-width: 150px;
+    flex-shrink: 0;
+    scroll-snap-align: start;
+  }
+
+  .setup-specs-five-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+  }
+
+  .originos-matrix-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
+  .capability-cards-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .pulse-top-kpi-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* MOBILE & PORTRAIT TABLET BREAKPOINT (<= 768px) */
+@media (max-width: 768px) {
+  html, body {
+    overflow-x: hidden;
+    width: 100%;
+  }
+
+  .desktop-screen-page {
+    gap: 20px;
+  }
+
+  .desktop-page-header {
+    gap: 4px;
+  }
+
+  .text-page-title {
+    font-size: clamp(22px, 6vw, 28px);
+  }
+
+  .header-subtitle {
+    font-size: 13.5px;
+  }
+
+  /* Home Screen */
+  .home-top-status-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .home-status-badges-group {
+    flex-wrap: wrap;
+    gap: 8px;
+    width: 100%;
+  }
+
+  .home-quest-status-pill,
+  .device-connection-badge {
+    max-width: 100%;
+    font-size: 11px;
+    padding: 6px 10px;
+  }
+
+  .hero-banner-card {
+    flex-direction: column;
+    padding: 22px 18px;
+    min-height: auto;
+    gap: 22px;
+    text-align: left;
+  }
+
+  .hero-banner-left {
+    width: 100%;
+  }
+
+  .hero-main-title {
+    font-size: clamp(26px, 8vw, 36px);
+    line-height: 1.15;
+  }
+
+  .hero-supporting-line {
+    font-size: 13.5px;
+  }
+
+  .hero-actions-group {
+    flex-direction: column;
+    width: 100%;
+    gap: 10px;
+  }
+
+  .hero-primary-btn,
+  .hero-secondary-link-btn {
+    width: 100%;
+    justify-content: center;
+    box-sizing: border-box;
+  }
+
+  .hero-visual-wrapper {
+    width: 100%;
+    max-width: 260px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+  }
+
+  /* Device Snapshot Strip */
+  .device-snapshot-strip {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    padding: 14px;
+    gap: 12px;
+  }
+
+  .snapshot-header-tag {
+    grid-column: span 2;
+    justify-content: center;
+  }
+
+  .snapshot-divider {
+    display: none;
+  }
+
+  .snapshot-item {
+    gap: 10px;
+  }
+
+  .snapshot-icon-wrap {
+    width: 36px;
+    height: 36px;
+  }
+
+  .snapshot-value {
+    font-size: 14px;
+  }
+
+  /* Large Discovery Modules */
+  .large-modules-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .large-feature-module {
+    padding: 20px 18px;
+    min-height: auto;
+  }
+
+  /* AI Moment Card */
+  .ai-moment-card {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 20px 16px;
+    gap: 18px;
+  }
+
+  .ai-recommendation-matrix {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    padding: 12px;
+  }
+
+  .ai-moment-right {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 6px;
+  }
+
+  /* Quester Pulse Summary */
+  .pulse-summary-card {
+    padding: 18px 16px;
+  }
+
+  .pulse-summary-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .pulse-signals-strip {
+    grid-template-columns: 1fr;
+    gap: 12px;
+    padding: 12px 14px;
+  }
+
+  .pulse-signal-divider {
+    display: none;
+  }
+
+  /* Smart / Quest Screen */
+  .smart-setup-breakdown-card {
+    padding: 20px 16px;
+    gap: 18px;
+  }
+
+  .breakdown-header-row {
+    flex-direction: column;
+    gap: 14px;
+    align-items: flex-start;
+    width: 100%;
+  }
+
+  .breakdown-main-title {
+    font-size: 20px;
+  }
+
+  .setup-active-badge-large {
+    width: 100%;
+    justify-content: center;
+    box-sizing: border-box;
+  }
+
+  .setup-specs-five-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+
+  .originos-integration-strip {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 14px 16px;
+  }
+
+  .setup-actions-footer {
+    flex-direction: column;
+    gap: 12px;
+    align-items: stretch;
+  }
+
+  .actions-left-group {
+    flex-direction: column;
+    width: 100%;
+    gap: 10px;
+  }
+
+  .setup-primary-action-btn,
+  .clean-secondary-btn,
+  .show-how-link-btn {
+    width: 100%;
+    justify-content: center;
+    box-sizing: border-box;
+  }
+
+  .customizer-sliders-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  /* Tell iQOO / Voice Screen */
+  .tell-iqoo-content-grid {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  .voice-hero-panel {
+    padding: 24px 16px;
+    min-height: auto;
+  }
+
+  .sample-prompts-bar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    width: 100%;
+  }
+
+  .samples-chips-list {
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .sample-prompt-chip {
+    flex-grow: 1;
+    text-align: center;
+  }
+
+  .schema-table {
+    width: 100%;
+  }
+
+  .schema-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+
+  .schema-input {
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .tell-iqoo-actions-row {
+    flex-direction: column;
+    width: 100%;
+    gap: 10px;
+  }
+
+  .tell-iqoo-actions-row button {
+    width: 100%;
+    justify-content: center;
+    box-sizing: border-box;
+  }
+
+  /* Quester Voice / Community */
+  .quester-voice-filter-bar {
+    display: flex;
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    gap: 8px;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 6px;
+    width: 100%;
+  }
+
+  .quester-filter-btn {
+    flex-shrink: 0;
+  }
+
+  .canonical-signals-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .sig-card-header {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .sig-card-footer {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+
+  .sig-support-button {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .sig-details-link {
+    justify-content: center;
+    font-size: 11px;
+  }
+
+  /* FLOW F: 9-Step Closed-Loop Vertical Timeline on narrow screens */
+  .lifecycle-stepper-full {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 14px !important;
+    padding-left: 10px !important;
+    position: relative;
+  }
+
+  .lifecycle-stepper-full::before {
+    content: '';
+    position: absolute;
+    left: 21px;
+    top: 12px;
+    bottom: 12px;
+    width: 2px;
+    background: var(--border-default);
+    z-index: 0;
+  }
+
+  .lifecycle-step-node {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    text-align: left !important;
+    gap: 14px !important;
+    position: relative;
+    z-index: 1;
+  }
+
+  .node-circle {
+    width: 24px;
+    height: 24px;
+    font-size: 10px;
+    flex-shrink: 0;
+  }
+
+  .node-name {
+    font-size: 12px;
+    line-height: 1.3;
+  }
+
+  .modal-actions-row {
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+  }
+
+  .modal-support-btn,
+  .modal-actions-row .clean-secondary-btn {
+    width: 100%;
+    justify-content: center;
+    box-sizing: border-box;
+  }
+
+  /* Beta Lab */
+  .beta-lab-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .beta-closed-loop-banner {
+    flex-direction: column;
+    gap: 16px;
+    padding: 18px 16px;
+  }
+
+  .loop-steps-diagram {
+    flex-wrap: wrap;
+    gap: 6px;
+    justify-content: center;
+  }
+
+  .testbench-card {
+    padding: 20px 16px;
+    gap: 16px;
+  }
+
+  .testbench-top {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .join-exp-btn {
+    width: 100%;
+    justify-content: center;
+    box-sizing: border-box;
+  }
+
+  .experiment-specs-breakdown-grid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .highlights-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .sentiment-selector-row {
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+  }
+
+  .sentiment-btn {
+    width: 100%;
+    justify-content: center;
+    box-sizing: border-box;
+  }
+
+  .eval-comment-input {
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .eval-submit-btn {
+    width: 100%;
+    justify-content: center;
+    box-sizing: border-box;
+  }
+
+  /* Pulse Dashboard */
+  .pulse-family-control-strip {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 16px;
+  }
+
+  .family-left {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    width: 100%;
+  }
+
+  .family-pills-list {
+    flex-wrap: wrap;
+    gap: 6px;
+    width: 100%;
+  }
+
+  .family-pill-btn {
+    flex-grow: 1;
+    text-align: center;
+  }
+
+  .pulse-top-kpi-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+
+  .pulse-insights-dual-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .originos-matrix-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+
+  .ai-insight-evidence-strip {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .ev-divider {
+    display: none;
+  }
+
+  /* Controlled inner table scroll on mobile (no page overflow) */
+  .pulse-canonical-table {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    width: 100%;
+    border-radius: var(--radius-md);
+  }
+
+  .table-header-row,
+  .table-data-row {
+    min-width: 580px;
+  }
+
+  /* Profile Screen */
+  .quester-profile-banner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 18px;
+    padding: 20px 16px;
+  }
+
+  .profile-banner-left {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .profile-stats-strip {
+    width: 100%;
+    justify-content: space-around;
+    gap: 8px;
+  }
+
+  .p-divider {
+    height: 24px;
+  }
+
+  .capability-filter-pills {
+    display: flex;
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    gap: 6px;
+    padding-bottom: 6px;
+    width: 100%;
+  }
+
+  .cap-filter-btn {
+    flex-shrink: 0;
+  }
+
+  .capability-cards-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .my-signal-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+}
+
+/* COMPACT SMARTPHONES (<= 360px & 320px) */
+@media (max-width: 360px) {
+  .pulse-top-kpi-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .originos-matrix-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .setup-specs-five-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .device-snapshot-strip {
+    grid-template-columns: 1fr;
+  }
+
+  .snapshot-header-tag {
+    grid-column: span 1;
+  }
+
+  .ai-recommendation-matrix {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-main-title {
+    font-size: 24px !important;
+  }
+
+  .text-page-title {
+    font-size: 20px !important;
+  }
+
+  .input-method-tabs {
+    grid-template-columns: 1fr;
+  }
+}
+

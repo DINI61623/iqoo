@@ -16,7 +16,8 @@ import {
   X,
   ShieldCheck,
   RotateCcw,
-  Sliders
+  Sliders,
+  Menu
 } from 'lucide-react';
 import { useApp } from '../../context/AppContext';
 import { NavigationTab, DeviceProfile } from '../../types';
@@ -40,6 +41,7 @@ export const DesktopLayout: React.FC<DesktopLayoutProps> = ({ children }) => {
   } = useApp();
 
   const [deviceDropdownOpen, setDeviceDropdownOpen] = useState(false);
+  const [mobileDrawerOpen, setMobileDrawerOpen] = useState(false);
   const [questAutoDetect, setQuestAutoDetect] = useState(true);
   const [telemetryConsent, setTelemetryConsent] = useState(true);
   const [thermalGuard, setThermalGuard] = useState(true);
@@ -54,13 +56,194 @@ export const DesktopLayout: React.FC<DesktopLayoutProps> = ({ children }) => {
     { id: 'pulse', label: 'iQOO PULSE', sub: 'Product Intelligence', icon: <BarChart3 size={19} strokeWidth={2.2} /> },
   ];
 
+  // Primary destinations for mobile bottom navigation bar
+  const primaryMobileNav: { id: NavigationTab; label: string; icon: React.ReactNode; badge?: string }[] = [
+    { id: 'home', label: 'Home', icon: <Home size={20} strokeWidth={2.2} /> },
+    { id: 'smart', label: 'Quest', icon: <Cpu size={20} strokeWidth={2.2} /> },
+    { id: 'voice', label: 'Tell iQOO', icon: <Mic size={20} strokeWidth={2.2} />, badge: 'AI' },
+    { id: 'community', label: 'Voice', icon: <Users size={20} strokeWidth={2.2} /> },
+    { id: 'pulse', label: 'Pulse', icon: <BarChart3 size={20} strokeWidth={2.2} /> },
+  ];
+
   const handleSelectDevice = (dev: DeviceProfile) => {
     setSelectedDevice(dev);
     setDeviceDropdownOpen(false);
   };
 
+  const handleNavClick = (tabId: NavigationTab) => {
+    setCurrentTab(tabId);
+    setMobileDrawerOpen(false);
+  };
+
   return (
     <div className="desktop-app-layout">
+      {/* MOBILE TOPBAR (Visible only on mobile/tablet <= 1024px) */}
+      <header className="mobile-topbar">
+        <div className="mobile-topbar-left">
+          <button 
+            className="mobile-hamburger-btn"
+            onClick={() => setMobileDrawerOpen(true)}
+            aria-label="Open navigation menu"
+          >
+            <Menu size={22} />
+          </button>
+          <div className="brand-logo-cluster mobile-brand" onClick={() => handleNavClick('home')}>
+            <span className="brand-iqoo font-display">iQOO</span>
+            <span className="brand-one font-tech">ONE</span>
+          </div>
+        </div>
+
+        <div className="mobile-topbar-right">
+          {/* Quick Monster Mode Toggle */}
+          <button 
+            className={`mobile-monster-btn ${selectedDevice.monsterModeActive ? 'is-active' : ''}`}
+            onClick={toggleMonsterMode}
+            title="Toggle Monster Mode"
+            aria-label="Monster Mode"
+          >
+            <Zap size={14} />
+            <span className="font-tech">MONSTER</span>
+          </button>
+
+          {/* Compact Device Indicator Pill */}
+          <div className="mobile-device-trigger-wrap">
+            <button 
+              className="mobile-device-pill-btn"
+              onClick={() => setDeviceDropdownOpen(!deviceDropdownOpen)}
+              aria-label="Select device"
+            >
+              <span className="device-status-dot" />
+              <span className="mobile-device-name font-tech">{selectedDevice.name.replace('iQOO ', '')}</span>
+              <ChevronDown size={12} className={`chevron-arrow ${deviceDropdownOpen ? 'is-open' : ''}`} />
+            </button>
+
+            {deviceDropdownOpen && (
+              <div className="desktop-device-dropdown mobile-dropdown-pop animate-slide-up">
+                <div className="dropdown-header font-tech">iQOO DEVICE ECOSYSTEM</div>
+                <div className="dropdown-list">
+                  {allDevices.map(dev => (
+                    <button
+                      key={dev.id}
+                      className={`dropdown-item ${dev.id === selectedDevice.id ? 'is-active' : ''}`}
+                      onClick={() => handleSelectDevice(dev)}
+                    >
+                      <div className="item-details">
+                        <div className="item-name-row">
+                          <span className="item-name font-tech">{dev.name}</span>
+                          <span className="item-family-tag font-tech">{dev.family}</span>
+                        </div>
+                        <span className="item-specs">{dev.chipset.split('(')[0]}</span>
+                      </div>
+                      {dev.id === selectedDevice.id && <Check size={16} className="item-check-icon" />}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
+
+          {/* User Avatar */}
+          <div 
+            className="topbar-user-avatar mobile-avatar"
+            onClick={() => handleNavClick('profile')}
+            title="Alex V. (Master Quester)"
+          >
+            <span>A</span>
+          </div>
+        </div>
+      </header>
+
+      {/* MOBILE NAVIGATION DRAWER (Slide-over from left) */}
+      {mobileDrawerOpen && (
+        <div className="mobile-drawer-backdrop" onClick={() => setMobileDrawerOpen(false)}>
+          <div className="mobile-drawer-sheet animate-slide-right" onClick={e => e.stopPropagation()}>
+            <div className="drawer-header">
+              <div className="brand-logo-cluster" onClick={() => handleNavClick('home')}>
+                <span className="brand-iqoo font-display">iQOO</span>
+                <span className="brand-one font-tech">ONE</span>
+                <span className="brand-os-pill font-tech">OriginOS 6</span>
+              </div>
+              <button 
+                className="drawer-close-btn"
+                onClick={() => setMobileDrawerOpen(false)}
+                aria-label="Close menu"
+              >
+                <X size={20} />
+              </button>
+            </div>
+
+            {/* Telemetry Chip in Drawer */}
+            <div className="drawer-telemetry-strip font-tech">
+              <Activity size={13} className="tele-icon-top" />
+              <span>{selectedDevice.fpsCurrent} FPS</span>
+              <span className="tele-sep">•</span>
+              <span>{selectedDevice.temperature}°C</span>
+              <span className="tele-sep">•</span>
+              <span>{selectedDevice.family}</span>
+            </div>
+
+            {/* Navigation links */}
+            <nav className="drawer-nav">
+              <div className="nav-group-label font-tech">PRIMARY CONSOLE</div>
+              {navItems.map(item => {
+                const isActive = currentTab === item.id;
+                return (
+                  <button
+                    key={item.id}
+                    className={`sidebar-nav-item ${isActive ? 'is-active' : ''}`}
+                    onClick={() => handleNavClick(item.id)}
+                  >
+                    <div className="nav-item-icon">
+                      {item.icon}
+                    </div>
+                    <div className="nav-item-text">
+                      <span className="nav-item-label font-tech">{item.label}</span>
+                      <span className="nav-item-sub">{item.sub}</span>
+                    </div>
+                    {item.badge && (
+                      <span className={`nav-item-badge font-tech badge-${item.badge.toLowerCase()}`}>
+                        {item.badge}
+                      </span>
+                    )}
+                  </button>
+                );
+              })}
+
+              <div className="nav-group-label font-tech" style={{ marginTop: '14px' }}>SECONDARY CONTROLS</div>
+              <button 
+                className={`sidebar-sub-item ${currentTab === 'profile' ? 'is-active' : ''}`}
+                onClick={() => handleNavClick('profile')}
+              >
+                <User size={18} />
+                <span className="font-tech">Profile & Capabilities</span>
+              </button>
+
+              <button 
+                className="sidebar-sub-item"
+                onClick={() => {
+                  setMobileDrawerOpen(false);
+                  setIsSettingsOpen(true);
+                }}
+              >
+                <SettingsIcon size={18} />
+                <span className="font-tech">Console Settings</span>
+              </button>
+            </nav>
+
+            <div className="drawer-footer">
+              <div className="sidebar-active-quest-pill" onClick={() => handleNavClick('smart')}>
+                <div className="quest-indicator-dot" />
+                <div className="quest-text-block">
+                  <span className="quest-sub font-tech">CURRENT QUEST</span>
+                  <span className="quest-title font-tech">{appliedSetupActivity.toUpperCase()} READY</span>
+                </div>
+                <span className="quest-link font-tech">TUNE</span>
+              </div>
+              <span className="sidebar-version font-tech">iQOO ONE • DEMO PLATFORM v2.6</span>
+            </div>
+          </div>
+        </div>
+      )}
       {/* 1. LEFT SIDEBAR (236px) */}
       <aside className="desktop-sidebar">
         <div className="sidebar-top-section">
@@ -226,6 +409,28 @@ export const DesktopLayout: React.FC<DesktopLayoutProps> = ({ children }) => {
             {children}
           </div>
         </main>
+
+        {/* Mobile Bottom Navigation Bar (Visible only on mobile/tablet <= 1024px) */}
+        <nav className="mobile-bottom-nav" aria-label="Mobile Navigation">
+          {primaryMobileNav.map(item => {
+            const isActive = currentTab === item.id;
+            return (
+              <button
+                key={item.id}
+                className={`mobile-bottom-tab ${isActive ? 'is-active' : ''}`}
+                onClick={() => setCurrentTab(item.id)}
+                aria-label={item.label}
+              >
+                <div className="mobile-tab-icon-wrap">
+                  {item.icon}
+                  {item.badge && <span className="mobile-tab-badge font-tech">{item.badge}</span>}
+                </div>
+                <span className="mobile-tab-label font-tech">{item.label}</span>
+                {isActive && <div className="mobile-tab-indicator" />}
+              </button>
+            );
+          })}
+        </nav>
       </div>
 
       {/* Settings Modal */}

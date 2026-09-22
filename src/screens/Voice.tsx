@@ -33,42 +33,43 @@ export const Voice: React.FC = () => {
   const [analysisStep, setAnalysisStep] = useState(1);
   const [hasAnalyzed, setHasAnalyzed] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [voiceFallbackActive, setVoiceFallbackActive] = useState(false);
 
   const [userSaidText, setUserSaidText] = useState('');
   const [isEditingStructured, setIsEditingStructured] = useState(false);
 
-  // Exact Phase 7 AI Understood Schema
+  // Exact Flow C & D AI Understood Schema
   const [structuredData, setStructuredData] = useState<StructuredAiSignal>({
     category: 'Gaming & Thermals',
     experience: 'Thermal increase',
     quest: 'Gaming',
-    context: 'Long gaming session (45+ min BGMI / Warzone)',
+    context: 'Long gaming session',
     device: selectedDevice.name,
     trigger: 'Sustained performance',
     recentUpdate: 'OriginOS 6',
     confidence: 0.98,
     relatedCount: 486,
-    aiInsight: 'This experience appears primarily during sustained high-performance gaming sessions on tournament titles.',
-    similarContext: 'Long gaming sessions + sustained performance'
+    aiInsight: 'This experience appears primarily during sustained high-performance gaming sessions.',
+    similarContext: 'Long gaming sessions, High performance, Warm environment'
   });
 
   // Preset sample queries for interactive demoing
   const samplePrompts = [
     {
       label: 'Gaming Thermals',
-      text: 'My phone gets warm after playing BGMI for about an hour in 120 FPS mode.',
+      text: 'My phone gets warm after playing for an hour.',
       structured: {
         category: 'Gaming & Thermals',
         experience: 'Thermal increase',
         quest: 'Gaming',
-        context: 'Long gaming session (45+ min BGMI)',
+        context: 'Long gaming session',
         device: selectedDevice.name,
         trigger: 'Sustained performance',
         recentUpdate: 'OriginOS 6',
         confidence: 0.98,
         relatedCount: 486,
-        aiInsight: 'This experience appears primarily during sustained high-performance gaming sessions on tournament titles.',
-        similarContext: 'Long gaming sessions + sustained performance'
+        aiInsight: 'This experience appears primarily during sustained high-performance gaming sessions.',
+        similarContext: 'Long gaming sessions, High performance, Warm environment'
       }
     },
     {
@@ -85,11 +86,11 @@ export const Voice: React.FC = () => {
         confidence: 0.96,
         relatedCount: 3410,
         aiInsight: 'High customer satisfaction clustered around 16GB LPDDR5X memory scheduling and fluid gesture physics.',
-        similarContext: 'Continuous multitasking + Atomic Windows'
+        similarContext: 'Continuous multitasking • Atomic Windows'
       }
     },
     {
-      label: 'Camera Portrait Specs',
+      label: 'Camera Specs',
       text: 'Portrait mode edge detection occasionally blurs the rim of my spectacles in night photos.',
       structured: {
         category: 'Camera & Imaging',
@@ -102,7 +103,7 @@ export const Voice: React.FC = () => {
         confidence: 0.94,
         relatedCount: 142,
         aiInsight: 'Clustered around fine wireframe boundaries under high-contrast indoor sodium lighting.',
-        similarContext: 'Low light + metallic spectacle frames'
+        similarContext: 'Low light • metallic spectacle frames'
       }
     }
   ];
@@ -123,21 +124,108 @@ export const Voice: React.FC = () => {
     setHasAnalyzed(false);
     setIsAnalyzing(false);
     setRecordingSeconds(0);
+    setVoiceFallbackActive(false);
 
+    // Graceful microphone check & fallback handling
+    try {
+      const SpeechRecognition = (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition;
+      if (SpeechRecognition) {
+        const recognition = new SpeechRecognition();
+        recognition.continuous = false;
+        recognition.interimResults = false;
+        recognition.lang = 'en-US';
+        recognition.onresult = (event: any) => {
+          if (event.results && event.results[0] && event.results[0][0]) {
+            setUserSaidText(event.results[0][0].transcript);
+          }
+        };
+        recognition.onerror = () => {
+          setVoiceFallbackActive(true);
+        };
+        recognition.start();
+      } else {
+        setVoiceFallbackActive(true);
+      }
+    } catch {
+      setVoiceFallbackActive(true);
+    }
+
+    // High fidelity prototype simulation fallback
     setTimeout(() => {
-      setUserSaidText("My phone gets warm after playing for about an hour in 120 FPS mode.");
-    }, 2200);
+      setUserSaidText("My phone gets warm after playing for an hour.");
+      setVoiceFallbackActive(true);
+    }, 1800);
   };
 
   const handleStopRecord = () => {
     setIsRecording(false);
-    startAiAnalysis(userSaidText || "My phone gets warm after playing for about an hour in 120 FPS mode.");
+    startAiAnalysis(userSaidText || "My phone gets warm after playing for an hour.");
   };
 
   const startAiAnalysis = (text: string) => {
-    setUserSaidText(text);
+    const raw = (text || userSaidText || "My phone gets warm after playing for an hour.").trim();
+    setUserSaidText(raw);
     setIsAnalyzing(true);
     setAnalysisStep(1);
+
+    const lower = raw.toLowerCase();
+    if (lower.includes('warm') || lower.includes('heat') || lower.includes('hour') || lower.includes('bgmi') || lower.includes('play') || lower.includes('game') || lower.includes('thermal')) {
+      setStructuredData({
+        category: 'Gaming & Thermals',
+        experience: 'Thermal increase',
+        quest: 'Gaming',
+        context: 'Long gaming session',
+        device: selectedDevice.name,
+        trigger: 'Sustained performance',
+        recentUpdate: 'OriginOS 6',
+        confidence: 0.98,
+        relatedCount: 486,
+        aiInsight: 'This experience appears primarily during sustained high-performance gaming sessions.',
+        similarContext: 'Long gaming sessions, High performance, Warm environment'
+      });
+    } else if (lower.includes('smooth') || lower.includes('multitask') || lower.includes('app') || lower.includes('work')) {
+      setStructuredData({
+        category: 'UI & Multitasking',
+        experience: 'Smoothness enhancement',
+        quest: 'Working',
+        context: 'Rapid app switching with atomic cards',
+        device: selectedDevice.name,
+        trigger: 'Dynamic RAM allocation',
+        recentUpdate: 'OriginOS 6.0 Stable',
+        confidence: 0.96,
+        relatedCount: 3410,
+        aiInsight: 'High customer satisfaction clustered around 16GB LPDDR5X memory scheduling and fluid gesture physics.',
+        similarContext: 'Continuous multitasking • Atomic Windows'
+      });
+    } else if (lower.includes('camera') || lower.includes('photo') || lower.includes('portrait') || lower.includes('lens')) {
+      setStructuredData({
+        category: 'Camera & Imaging',
+        experience: 'Edge segmentation artifact',
+        quest: 'Creating',
+        context: 'Low-light indoor portrait with glasses',
+        device: selectedDevice.name,
+        trigger: 'Neural depth map segmentation on thin frames',
+        recentUpdate: 'OriginOS 6',
+        confidence: 0.94,
+        relatedCount: 142,
+        aiInsight: 'Clustered around fine wireframe boundaries under high-contrast indoor sodium lighting.',
+        similarContext: 'Low light • metallic spectacle frames'
+      });
+    } else {
+      setStructuredData({
+        category: 'Gaming & Thermals',
+        experience: 'Thermal increase',
+        quest: 'Gaming',
+        context: 'Long gaming session',
+        device: selectedDevice.name,
+        trigger: 'Sustained performance',
+        recentUpdate: 'OriginOS 6',
+        confidence: 0.98,
+        relatedCount: 486,
+        aiInsight: 'This experience appears primarily during sustained high-performance gaming sessions.',
+        similarContext: 'Long gaming sessions, High performance, Warm environment'
+      });
+    }
 
     setTimeout(() => setAnalysisStep(2), 500);
     setTimeout(() => setAnalysisStep(3), 1000);
@@ -158,7 +246,7 @@ export const Voice: React.FC = () => {
 
   const handleShareSubmit = () => {
     submitFeedback(
-      userSaidText || "My phone gets warm after playing for about an hour.",
+      userSaidText || "My phone gets warm after playing for an hour.",
       inputMode,
       structuredData,
       isEditingStructured
@@ -173,6 +261,7 @@ export const Voice: React.FC = () => {
     setUserSaidText('');
     setRecordingSeconds(0);
     setIsEditingStructured(false);
+    setVoiceFallbackActive(false);
   };
 
   return (
@@ -269,6 +358,7 @@ export const Voice: React.FC = () => {
                     </button>
 
                     <span className="mic-main-label font-tech">TAP TO SPEAK</span>
+                    <span className="voice-sim-badge font-tech">🎙 VOICE SIMULATION READY • TAP TO SPEAK OR TYPE</span>
                     <p className="mic-subtext">
                       Speak naturally about what happened. Describe any lag, battery draw, thermal change, or feature idea.
                     </p>
@@ -279,7 +369,7 @@ export const Voice: React.FC = () => {
                   <span className="stage-heading font-tech">TYPE YOUR EXPERIENCE NATURALLY</span>
                   <textarea 
                     className="type-input-textarea"
-                    placeholder="Example: My phone gets warm after playing BGMI for about an hour..."
+                    placeholder="Example: My phone gets warm after playing for an hour..."
                     value={userSaidText}
                     onChange={(e) => setUserSaidText(e.target.value)}
                     rows={4}
@@ -337,7 +427,7 @@ export const Voice: React.FC = () => {
 
                 <div className="analyzing-text-block">
                   <span className="analyzing-pill font-tech">AI REASONING IN PROGRESS</span>
-                  <h3 className="analyzing-heading">Analyzing Raw Experience</h3>
+                  <h3 className="analyzing-heading">Understanding your experience...</h3>
                   <p className="analyzing-sub">Extracting hardware state, quest context, and querying Quester clusters...</p>
                 </div>
 
