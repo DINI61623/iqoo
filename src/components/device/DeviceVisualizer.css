@@ -378,3 +378,33 @@
   color: var(--text-secondary);
   display: block;
 }
+
+/* ========================================================
+   RESPONSIVE MOBILE RULES
+   ======================================================== */
+@media (max-width: 768px) {
+  .floating-spec-badge {
+    display: none !important;
+  }
+
+  .device-visualizer-root {
+    max-width: 100%;
+    transform: scale(0.88);
+    transform-origin: center center;
+    margin: -10px auto;
+  }
+}
+
+@media (max-width: 480px) {
+  .device-visualizer-root {
+    transform: scale(0.8);
+    margin: -18px auto;
+  }
+}
+
+@media (max-width: 360px) {
+  .device-visualizer-root {
+    transform: scale(0.7);
+    margin: -28px auto;
+  }
+}

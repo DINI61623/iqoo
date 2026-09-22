@@ -56,14 +56,7 @@ export const DesktopLayout: React.FC<DesktopLayoutProps> = ({ children }) => {
     { id: 'pulse', label: 'iQOO PULSE', sub: 'Product Intelligence', icon: <BarChart3 size={19} strokeWidth={2.2} /> },
   ];
 
-  // Primary destinations for mobile bottom navigation bar
-  const primaryMobileNav: { id: NavigationTab; label: string; icon: React.ReactNode; badge?: string }[] = [
-    { id: 'home', label: 'Home', icon: <Home size={20} strokeWidth={2.2} /> },
-    { id: 'smart', label: 'Quest', icon: <Cpu size={20} strokeWidth={2.2} /> },
-    { id: 'voice', label: 'Tell iQOO', icon: <Mic size={20} strokeWidth={2.2} />, badge: 'AI' },
-    { id: 'community', label: 'Voice', icon: <Users size={20} strokeWidth={2.2} /> },
-    { id: 'pulse', label: 'Pulse', icon: <BarChart3 size={20} strokeWidth={2.2} /> },
-  ];
+
 
   const handleSelectDevice = (dev: DeviceProfile) => {
     setSelectedDevice(dev);
@@ -77,9 +70,34 @@ export const DesktopLayout: React.FC<DesktopLayoutProps> = ({ children }) => {
 
   return (
     <div className="desktop-app-layout">
-      {/* MOBILE TOPBAR (Visible only on mobile/tablet <= 1024px) */}
+      {/* MOBILE TOPBAR (Visible only on mobile/tablet < 1024px) */}
       <header className="mobile-topbar">
-        <div className="mobile-topbar-left">
+        <div className="mobile-topbar-left" onClick={() => handleNavClick('home')}>
+          <div className="brand-logo-cluster mobile-brand">
+            <span className="brand-iqoo font-display">iQOO</span>
+            <span className="brand-one font-tech">ONE</span>
+          </div>
+        </div>
+
+        {/* Center: iQOO 15 • Connected */}
+        <div className="mobile-topbar-center">
+          <div className="mobile-device-status-pill font-tech">
+            <span className="device-status-dot" />
+            <span className="device-status-label">{selectedDevice.name} • Connected</span>
+          </div>
+        </div>
+
+        {/* Right: Profile & Menu Button */}
+        <div className="mobile-topbar-right">
+          <button 
+            className="mobile-avatar-btn"
+            onClick={() => handleNavClick('profile')}
+            aria-label="Profile"
+            title="Alex V. (Profile)"
+          >
+            <span>A</span>
+          </button>
+
           <button 
             className="mobile-hamburger-btn"
             onClick={() => setMobileDrawerOpen(true)}
@@ -87,69 +105,6 @@ export const DesktopLayout: React.FC<DesktopLayoutProps> = ({ children }) => {
           >
             <Menu size={22} />
           </button>
-          <div className="brand-logo-cluster mobile-brand" onClick={() => handleNavClick('home')}>
-            <span className="brand-iqoo font-display">iQOO</span>
-            <span className="brand-one font-tech">ONE</span>
-          </div>
-        </div>
-
-        <div className="mobile-topbar-right">
-          {/* Quick Monster Mode Toggle */}
-          <button 
-            className={`mobile-monster-btn ${selectedDevice.monsterModeActive ? 'is-active' : ''}`}
-            onClick={toggleMonsterMode}
-            title="Toggle Monster Mode"
-            aria-label="Monster Mode"
-          >
-            <Zap size={14} />
-            <span className="font-tech">MONSTER</span>
-          </button>
-
-          {/* Compact Device Indicator Pill */}
-          <div className="mobile-device-trigger-wrap">
-            <button 
-              className="mobile-device-pill-btn"
-              onClick={() => setDeviceDropdownOpen(!deviceDropdownOpen)}
-              aria-label="Select device"
-            >
-              <span className="device-status-dot" />
-              <span className="mobile-device-name font-tech">{selectedDevice.name.replace('iQOO ', '')}</span>
-              <ChevronDown size={12} className={`chevron-arrow ${deviceDropdownOpen ? 'is-open' : ''}`} />
-            </button>
-
-            {deviceDropdownOpen && (
-              <div className="desktop-device-dropdown mobile-dropdown-pop animate-slide-up">
-                <div className="dropdown-header font-tech">iQOO DEVICE ECOSYSTEM</div>
-                <div className="dropdown-list">
-                  {allDevices.map(dev => (
-                    <button
-                      key={dev.id}
-                      className={`dropdown-item ${dev.id === selectedDevice.id ? 'is-active' : ''}`}
-                      onClick={() => handleSelectDevice(dev)}
-                    >
-                      <div className="item-details">
-                        <div className="item-name-row">
-                          <span className="item-name font-tech">{dev.name}</span>
-                          <span className="item-family-tag font-tech">{dev.family}</span>
-                        </div>
-                        <span className="item-specs">{dev.chipset.split('(')[0]}</span>
-                      </div>
-                      {dev.id === selectedDevice.id && <Check size={16} className="item-check-icon" />}
-                    </button>
-                  ))}
-                </div>
-              </div>
-            )}
-          </div>
-
-          {/* User Avatar */}
-          <div 
-            className="topbar-user-avatar mobile-avatar"
-            onClick={() => handleNavClick('profile')}
-            title="Alex V. (Master Quester)"
-          >
-            <span>A</span>
-          </div>
         </div>
       </header>
 
@@ -172,19 +127,62 @@ export const DesktopLayout: React.FC<DesktopLayoutProps> = ({ children }) => {
               </button>
             </div>
 
-            {/* Telemetry Chip in Drawer */}
-            <div className="drawer-telemetry-strip font-tech">
-              <Activity size={13} className="tele-icon-top" />
-              <span>{selectedDevice.fpsCurrent} FPS</span>
-              <span className="tele-sep">•</span>
-              <span>{selectedDevice.temperature}°C</span>
-              <span className="tele-sep">•</span>
-              <span>{selectedDevice.family}</span>
+            {/* Quick Hardware Controls inside Drawer */}
+            <div className="drawer-controls-box">
+              <div className="drawer-controls-top">
+                <div className="drawer-telemetry-tag font-tech">
+                  <Activity size={12} className="tele-icon-top" />
+                  <span>{selectedDevice.fpsCurrent} FPS</span>
+                  <span className="tele-sep">•</span>
+                  <span>{selectedDevice.temperature}°C</span>
+                </div>
+
+                <button 
+                  className={`drawer-monster-btn ${selectedDevice.monsterModeActive ? 'is-active' : ''}`}
+                  onClick={toggleMonsterMode}
+                >
+                  <Zap size={13} />
+                  <span className="font-tech">MONSTER</span>
+                </button>
+              </div>
+
+              {/* Connected Device Selector in Drawer */}
+              <div className="drawer-device-selector">
+                <button 
+                  className="drawer-device-trigger"
+                  onClick={() => setDeviceDropdownOpen(!deviceDropdownOpen)}
+                >
+                  <div className="drawer-device-info font-tech">
+                    <span className="device-status-dot" />
+                    <span>{selectedDevice.name}</span>
+                    <span className="drawer-dev-family">{selectedDevice.family}</span>
+                  </div>
+                  <ChevronDown size={14} className={`chevron-arrow ${deviceDropdownOpen ? 'is-open' : ''}`} />
+                </button>
+
+                {deviceDropdownOpen && (
+                  <div className="drawer-device-dropdown animate-slide-up">
+                    {allDevices.map(dev => (
+                      <button
+                        key={dev.id}
+                        className={`dropdown-item ${dev.id === selectedDevice.id ? 'is-active' : ''}`}
+                        onClick={() => handleSelectDevice(dev)}
+                      >
+                        <div className="item-details">
+                          <span className="item-name font-tech">{dev.name}</span>
+                          <span className="item-specs">{dev.chipset.split('(')[0]}</span>
+                        </div>
+                        {dev.id === selectedDevice.id && <Check size={16} className="item-check-icon" />}
+                      </button>
+                    ))}
+                  </div>
+                )}
+              </div>
             </div>
 
-            {/* Navigation links */}
+            {/* Navigation links (All 8 destinations) */}
             <nav className="drawer-nav">
-              <div className="nav-group-label font-tech">PRIMARY CONSOLE</div>
+              <div className="nav-group-label font-tech">NAVIGATION</div>
               {navItems.map(item => {
                 const isActive = currentTab === item.id;
                 return (
@@ -209,7 +207,7 @@ export const DesktopLayout: React.FC<DesktopLayoutProps> = ({ children }) => {
                 );
               })}
 
-              <div className="nav-group-label font-tech" style={{ marginTop: '14px' }}>SECONDARY CONTROLS</div>
+              <div className="nav-group-label font-tech" style={{ marginTop: '10px' }}>SECONDARY CONTROLS</div>
               <button 
                 className={`sidebar-sub-item ${currentTab === 'profile' ? 'is-active' : ''}`}
                 onClick={() => handleNavClick('profile')}
@@ -409,28 +407,6 @@ export const DesktopLayout: React.FC<DesktopLayoutProps> = ({ children }) => {
             {children}
           </div>
         </main>
-
-        {/* Mobile Bottom Navigation Bar (Visible only on mobile/tablet <= 1024px) */}
-        <nav className="mobile-bottom-nav" aria-label="Mobile Navigation">
-          {primaryMobileNav.map(item => {
-            const isActive = currentTab === item.id;
-            return (
-              <button
-                key={item.id}
-                className={`mobile-bottom-tab ${isActive ? 'is-active' : ''}`}
-                onClick={() => setCurrentTab(item.id)}
-                aria-label={item.label}
-              >
-                <div className="mobile-tab-icon-wrap">
-                  {item.icon}
-                  {item.badge && <span className="mobile-tab-badge font-tech">{item.badge}</span>}
-                </div>
-                <span className="mobile-tab-label font-tech">{item.label}</span>
-                {isActive && <div className="mobile-tab-indicator" />}
-              </button>
-            );
-          })}
-        </nav>
       </div>
 
       {/* Settings Modal */}

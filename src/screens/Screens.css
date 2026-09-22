@@ -4041,7 +4041,8 @@
   }
 
   .setup-specs-five-grid {
-    grid-template-columns: repeat(2, 1fr);
+    display: flex;
+    flex-direction: column;
     gap: 10px;
   }
 
@@ -4311,14 +4312,18 @@
   }
 
   .family-pills-list {
-    flex-wrap: wrap;
+    display: flex;
+    overflow-x: auto;
+    flex-wrap: nowrap;
     gap: 6px;
     width: 100%;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 4px;
   }
 
   .family-pill-btn {
-    flex-grow: 1;
-    text-align: center;
+    flex-shrink: 0;
   }
 
   .pulse-top-kpi-grid {
