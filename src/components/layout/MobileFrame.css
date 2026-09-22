@@ -1,0 +1,259 @@
+.iqoo-app-container {
+  width: 100vw;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  background-color: #E8EEF5;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Demo Control Bar */
+.demo-control-bar {
+  width: 100%;
+  max-width: 1100px;
+  margin: 10px auto 14px;
+  padding: 8px 18px;
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  z-index: 200;
+  background: #FFFFFF;
+  border: 1px solid var(--border-subtle);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+}
+
+.bar-brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.dot-live {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--iqoo-yellow);
+  box-shadow: 0 0 6px var(--iqoo-yellow);
+}
+
+.bar-title {
+  font-size: 0.8125rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  letter-spacing: 0.08em;
+}
+
+.bar-badge {
+  font-size: 0.625rem;
+  padding: 2px 6px;
+  background: #F1F4F9;
+  border-radius: var(--radius-xs);
+  color: var(--text-secondary);
+  font-family: var(--font-tech);
+  font-weight: 700;
+}
+
+.bar-view-toggles {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: #F1F4F9;
+  padding: 3px;
+  border-radius: var(--radius-full);
+}
+
+.toggle-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border-radius: var(--radius-full);
+  font-size: 0.75rem;
+  font-family: var(--font-display);
+  font-weight: 700;
+  color: var(--text-secondary);
+  transition: all var(--transition-fast);
+}
+
+.toggle-btn:hover {
+  color: var(--text-primary);
+  background: rgba(255, 255, 255, 0.6);
+}
+
+.toggle-btn.is-active {
+  background: #FFFFFF;
+  color: #0A0D14;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.toggle-btn.pulse-glow-tab.is-active {
+  background: #0A0D14;
+  color: var(--iqoo-yellow);
+}
+
+.bar-device-info {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.chip-icon {
+  color: var(--iqoo-blue);
+}
+
+.device-tag {
+  font-size: 0.75rem;
+  font-family: var(--font-tech);
+  color: var(--text-secondary);
+  font-weight: 700;
+}
+
+.icon-tool-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: #F1F4F9;
+  color: var(--text-secondary);
+  transition: all var(--transition-fast);
+}
+
+.icon-tool-btn:hover {
+  background: #E2E8F0;
+  color: var(--text-primary);
+  transform: rotate(90deg);
+}
+
+/* Phone Wrapper Layout */
+.phone-wrapper-center {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  width: 100%;
+  padding-bottom: 24px;
+}
+
+/* Phone Chassis for Frame Mode (390 x 844 reference) */
+.phone-hardware-chassis {
+  position: relative;
+  width: 390px;
+  height: 844px;
+  background: #FFFFFF;
+  border-radius: 48px;
+  padding: 10px;
+  box-shadow: 
+    0 0 0 3px #CBD5E1,
+    0 0 0 7px #FFFFFF,
+    0 20px 50px rgba(0, 0, 0, 0.1),
+    0 8px 20px rgba(0, 0, 0, 0.06);
+  box-sizing: border-box;
+}
+
+.phone-aura-glow {
+  position: absolute;
+  inset: -20px;
+  border-radius: 60px;
+  background: radial-gradient(circle, rgba(255, 199, 0, 0.15) 0%, rgba(255, 199, 0, 0) 70%);
+  z-index: -1;
+  transition: all 0.5s ease;
+  pointer-events: none;
+}
+
+.phone-aura-glow.monster-aura {
+  background: radial-gradient(circle, rgba(225, 29, 72, 0.18) 0%, rgba(225, 29, 72, 0) 70%);
+}
+
+/* Hardware Side Buttons */
+.hardware-button {
+  position: absolute;
+  background: #CBD5E1;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 3px;
+}
+
+.hw-volume-up {
+  left: -8px;
+  top: 140px;
+  width: 5px;
+  height: 48px;
+}
+
+.hw-volume-down {
+  left: -8px;
+  top: 200px;
+  width: 5px;
+  height: 48px;
+}
+
+.hw-power {
+  right: -8px;
+  top: 170px;
+  width: 5px;
+  height: 64px;
+  background: var(--iqoo-yellow);
+}
+
+/* Phone Screen Viewport */
+.phone-screen-viewport {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background-color: var(--bg-deep);
+  border-radius: 40px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.android-gesture-pill {
+  position: absolute;
+  bottom: 6px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 120px;
+  height: 4px;
+  background: rgba(0, 0, 0, 0.25);
+  border-radius: var(--radius-full);
+  z-index: 120;
+  pointer-events: none;
+}
+
+/* Fullscreen Mobile Viewport */
+.fullscreen-mobile-viewport {
+  width: 100%;
+  max-width: 480px;
+  min-height: 100vh;
+  background-color: var(--bg-deep);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 0 40px rgba(0, 0, 0, 0.08);
+}
+
+@media (max-width: 768px) {
+  .demo-control-bar {
+    border-radius: 0;
+    margin: 0 0 8px 0;
+    padding: 6px 12px;
+  }
+  .bar-badge, .bar-device-info {
+    display: none;
+  }
+  .phone-hardware-chassis {
+    width: 100vw;
+    height: 100vh;
+    border-radius: 0;
+    padding: 0;
+    box-shadow: none;
+  }
+  .phone-screen-viewport {
+    border-radius: 0;
+  }
+}

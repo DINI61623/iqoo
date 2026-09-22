@@ -1,0 +1,380 @@
+/* ========================================================
+   iQOO 15 PRODUCT HERO VISUALIZER STYLES
+   ======================================================== */
+
+.device-visualizer-root {
+  position: relative;
+  width: 380px;
+  height: 290px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  perspective: 1200px;
+  user-select: none;
+}
+
+/* Dynamic Ambient Glow */
+.device-ambient-glow {
+  position: absolute;
+  width: 300px;
+  height: 240px;
+  background: radial-gradient(circle, rgba(255, 199, 0, 0.32) 0%, rgba(255, 199, 0, 0.08) 50%, rgba(255, 199, 0, 0) 80%);
+  filter: blur(32px);
+  border-radius: 50%;
+  pointer-events: none;
+  transition: all 0.5s ease;
+  z-index: 1;
+}
+
+.monster-engaged .device-ambient-glow {
+  background: radial-gradient(circle, rgba(255, 199, 0, 0.45) 0%, rgba(239, 68, 68, 0.2) 60%, rgba(255, 199, 0, 0) 85%);
+  filter: blur(40px);
+  transform: scale(1.15);
+}
+
+/* 3D Floating Stage */
+.phone-3d-stage {
+  position: relative;
+  width: 330px;
+  height: 250px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: rotateY(-8deg) rotateX(6deg) rotateZ(-2deg);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 2;
+}
+
+.device-visualizer-root:hover .phone-3d-stage {
+  transform: rotateY(-2deg) rotateX(2deg) rotateZ(0deg) translateY(-4px);
+}
+
+/* Flagship Body Chassis */
+.phone-chassis {
+  position: relative;
+  width: 310px;
+  height: 230px;
+  background: linear-gradient(135deg, #1E293B 0%, #0F172A 100%);
+  border-radius: 28px;
+  padding: 8px;
+  box-shadow: 
+    0 24px 48px -12px rgba(15, 23, 42, 0.35),
+    0 8px 16px -4px rgba(15, 23, 42, 0.18),
+    inset 0 1px 1px rgba(255, 255, 255, 0.3),
+    inset 0 -1px 2px rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.phone-outer-frame {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: #090D16;
+  border-radius: 22px;
+  overflow: hidden;
+  border: 1.5px solid rgba(255, 255, 255, 0.12);
+  display: flex;
+  flex-direction: column;
+}
+
+.frame-specular-glare {
+  position: absolute;
+  top: 0;
+  left: -50%;
+  width: 200%;
+  height: 100%;
+  background: linear-gradient(
+    115deg,
+    rgba(255, 255, 255, 0) 35%,
+    rgba(255, 255, 255, 0.12) 48%,
+    rgba(255, 255, 255, 0.22) 50%,
+    rgba(255, 255, 255, 0) 54%
+  );
+  pointer-events: none;
+  z-index: 10;
+  transform: skewX(-20deg);
+}
+
+/* Phone Screen Display (OriginOS 6) */
+.phone-screen-display {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(145deg, #0D1322 0%, #111A2E 50%, #0B101D 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 10px 14px;
+}
+
+/* Top Island Status Bar */
+.phone-island-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 16px;
+  z-index: 5;
+}
+
+.island-time {
+  font-size: 10px;
+  font-weight: 700;
+  color: #94A3B8;
+  letter-spacing: 0.05em;
+}
+
+.island-punch-hole {
+  width: 28px;
+  height: 10px;
+  background: #05070B;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.camera-lens-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #0284C7;
+  box-shadow: 0 0 3px #38BDF8;
+}
+
+.island-badges {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.island-net {
+  font-size: 9px;
+  font-weight: 800;
+  color: var(--iqoo-yellow);
+}
+
+.island-battery-pill {
+  background: rgba(255, 255, 255, 0.12);
+  padding: 1px 5px;
+  border-radius: 4px;
+  font-size: 9px;
+  font-weight: 800;
+  color: #FFFFFF;
+}
+
+/* Screen Content Canvas */
+.screen-content-canvas {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-top: 6px;
+  position: relative;
+  z-index: 4;
+}
+
+.screen-bg-mesh {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at 80% 20%, rgba(255, 199, 0, 0.14) 0%, rgba(0, 102, 255, 0.08) 50%, transparent 80%);
+  pointer-events: none;
+}
+
+/* Dual-Core Engine Widget */
+.phone-core-widget {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 12px;
+  padding: 10px 12px;
+  backdrop-filter: blur(8px);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.widget-top-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.chip-brand-tag {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  color: #94A3B8;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+}
+
+.chip-ico {
+  color: var(--iqoo-yellow);
+}
+
+.engine-status-pill {
+  font-size: 9px;
+  font-weight: 800;
+  background: rgba(16, 185, 129, 0.15);
+  color: #34D399;
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  padding: 1px 6px;
+  border-radius: 9999px;
+}
+
+.engine-status-pill.monster-on {
+  background: rgba(255, 199, 0, 0.2);
+  color: var(--iqoo-yellow);
+  border-color: var(--iqoo-yellow);
+}
+
+.widget-chip-title {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.chip-main {
+  font-size: 13px;
+  font-weight: 900;
+  color: #FFFFFF;
+  letter-spacing: 0.05em;
+}
+
+.chip-soc {
+  font-size: 10px;
+  color: #94A3B8;
+  font-weight: 500;
+}
+
+.widget-telemetry-strip {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(0, 0, 0, 0.25);
+  padding: 4px 8px;
+  border-radius: 6px;
+}
+
+.tele-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.tele-lbl {
+  font-size: 8px;
+  font-weight: 800;
+  color: #64748B;
+  letter-spacing: 0.05em;
+}
+
+.tele-val-row {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.tele-icon {
+  color: #38BDF8;
+}
+
+.tele-val {
+  font-size: 11px;
+  font-weight: 800;
+  color: #38BDF8;
+}
+
+.tele-val.temp-warn {
+  color: #F87171;
+}
+
+.tele-divider {
+  width: 1px;
+  height: 18px;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* Quick Dock Switch */
+.phone-quick-dock {
+  display: flex;
+  justify-content: center;
+}
+
+.phone-monster-btn {
+  width: 100%;
+  height: 28px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  color: #F1F5F9;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  transition: all 0.2s ease;
+}
+
+.phone-monster-btn:hover {
+  background: rgba(255, 199, 0, 0.15);
+  border-color: var(--iqoo-yellow);
+  color: var(--iqoo-yellow);
+}
+
+.phone-monster-btn.active {
+  background: var(--iqoo-yellow);
+  border-color: var(--iqoo-yellow);
+  color: #0F172A;
+  box-shadow: 0 0 12px rgba(255, 199, 0, 0.5);
+}
+
+/* Floating Spec Tags */
+.floating-spec-badge {
+  position: absolute;
+  background: #FFFFFF;
+  border: 1px solid var(--border-default);
+  border-radius: 12px;
+  padding: 8px 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.12);
+  z-index: 10;
+  pointer-events: none;
+}
+
+.badge-top-right {
+  top: -12px;
+  right: -16px;
+}
+
+.badge-bottom-left {
+  bottom: -10px;
+  left: -18px;
+}
+
+.spec-icon {
+  color: #D97706;
+  flex-shrink: 0;
+}
+
+.spec-title {
+  font-size: 11px;
+  font-weight: 800;
+  color: var(--text-primary);
+  display: block;
+}
+
+.spec-desc {
+  font-size: 9px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  display: block;
+}

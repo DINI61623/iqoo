@@ -1,0 +1,65 @@
+.iqoo-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  border-radius: var(--radius-full);
+  font-family: var(--font-display);
+  font-weight: 700;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.iqoo-badge-sm {
+  padding: 3px 8px;
+  font-size: 0.6875rem;
+}
+
+.iqoo-badge-md {
+  padding: 4px 10px;
+  font-size: 0.75rem;
+}
+
+.iqoo-badge-yellow {
+  background: var(--iqoo-yellow-light);
+  color: #B45309;
+  border: 1px solid rgba(255, 199, 0, 0.4);
+}
+
+.iqoo-badge-monster {
+  background: var(--iqoo-monster-light);
+  color: #BE123C;
+  border: 1px solid rgba(225, 29, 72, 0.3);
+}
+
+.iqoo-badge-cyan {
+  background: var(--iqoo-blue-light);
+  color: #1D4ED8;
+  border: 1px solid rgba(37, 99, 235, 0.3);
+}
+
+.iqoo-badge-emerald {
+  background: var(--iqoo-emerald-light);
+  color: #047857;
+  border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+.iqoo-badge-subtle {
+  background: #F1F4F9;
+  color: var(--text-secondary);
+  border: 1px solid var(--border-subtle);
+}
+
+.iqoo-badge-outline {
+  background: #FFFFFF;
+  color: var(--text-primary);
+  border: 1px solid var(--border-medium);
+}
+
+.iqoo-badge-dot-pulse {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: currentColor;
+  box-shadow: 0 0 6px currentColor;
+  animation: rippleWave 1.8s infinite ease-out;
+}

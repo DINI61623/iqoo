@@ -1,0 +1,72 @@
+:root {
+  /* iQOO Brand Colors - Restrained & Clean */
+  --iqoo-yellow: #FFC700;
+  --iqoo-yellow-hover: #F5BE00;
+  --iqoo-yellow-light: #FFFBEB;
+  --iqoo-yellow-border: #FDE68A;
+  
+  --iqoo-emerald: #10B981;
+  --iqoo-emerald-light: #ECFDF5;
+  
+  --iqoo-blue: #2563EB;
+  --iqoo-blue-light: #EFF6FF;
+
+  --iqoo-red: #E11D48;
+  --iqoo-red-light: #FFF1F2;
+
+  /* Surfaces (Light-First, High Precision) */
+  --bg-app: #F8FAFC;
+  --bg-surface: #FFFFFF;
+  --bg-surface-subtle: #F1F5F9;
+  --bg-surface-active: #E2E8F0;
+  --bg-sidebar: #FFFFFF;
+
+  /* Borders */
+  --border-default: #E2E8F0;
+  --border-subtle: #F1F5F9;
+  --border-focus: #FFC700;
+
+  /* Typography Colors */
+  --text-primary: #0F172A;
+  --text-secondary: #64748B;
+  --text-muted: #94A3B8;
+  --text-light: #FFFFFF;
+
+  /* Typography Fonts */
+  --font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-tech: 'Rajdhani', 'Plus Jakarta Sans', monospace;
+
+  /* Strict 8px Spacing System */
+  --space-1: 8px;
+  --space-2: 16px;
+  --space-3: 24px;
+  --space-4: 32px;
+  --space-5: 40px;
+  --space-6: 48px;
+  --space-8: 64px;
+  --space-10: 80px;
+
+  /* Desktop Dimensions */
+  --sidebar-width: 230px;
+  --topbar-height: 64px;
+  --max-content-width: 1120px;
+  --content-padding-x: 40px;
+  --content-padding-y: 32px;
+
+  /* Standard Component Metrics */
+  --card-radius: 22px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-pill: 9999px;
+  --btn-height: 46px;
+
+  /* Shadows (Soft, Realistic, Restrained) */
+  --shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.04);
+  --shadow-card: 0 2px 8px rgba(15, 23, 42, 0.04), 0 12px 28px rgba(15, 23, 42, 0.02);
+  --shadow-card-hover: 0 8px 24px rgba(15, 23, 42, 0.06), 0 2px 6px rgba(15, 23, 42, 0.04);
+  --shadow-floating: 0 16px 36px rgba(15, 23, 42, 0.08);
+
+  /* Transitions */
+  --transition-fast: 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-normal: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}

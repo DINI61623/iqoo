@@ -1,0 +1,216 @@
+@charset "UTF-8";
+
+/* ========================================================
+   iQOO ONE — DESIGN SYSTEM & MASTER TOKENS
+   Light-First Base • OriginOS 6 Elegance • iQOO Energy
+   ======================================================== */
+
+:root {
+  /* Brand Accents */
+  --iqoo-yellow: #FFC700;
+  --iqoo-yellow-hover: #E6B300;
+  --iqoo-yellow-active: #CC9E00;
+  --iqoo-yellow-light: #FFF9E6;
+  --iqoo-yellow-border: rgba(255, 199, 0, 0.45);
+  --iqoo-yellow-glow: rgba(255, 199, 0, 0.25);
+
+  /* Performance Accents */
+  --iqoo-blue: #0066FF;
+  --iqoo-blue-hover: #0052CC;
+  --iqoo-blue-light: #EFF6FF;
+  --iqoo-blue-border: rgba(0, 102, 255, 0.25);
+
+  --iqoo-cyan: #00C2FF;
+  --iqoo-cyan-light: #ECFEFF;
+
+  --iqoo-emerald: #10B981;
+  --iqoo-emerald-hover: #059669;
+  --iqoo-emerald-light: #ECFDF5;
+  --iqoo-emerald-border: rgba(16, 185, 129, 0.25);
+
+  --iqoo-red: #EF4444;
+  --iqoo-red-light: #FEF2F2;
+
+  --iqoo-amber: #F59E0B;
+  --iqoo-amber-light: #FFFBEB;
+
+  /* Surfaces & Backgrounds (Light First) */
+  --bg-app: #F8FAFC;
+  --bg-sidebar: #FFFFFF;
+  --bg-surface: #FFFFFF;
+  --bg-surface-subtle: #F1F5F9;
+  --bg-surface-hover: #E2E8F0;
+  --bg-surface-active: #CBD5E1;
+  --bg-card-elevated: #FFFFFF;
+
+  /* Text & Typography */
+  --text-primary: #0F172A;
+  --text-secondary: #475569;
+  --text-muted: #94A3B8;
+  --text-inverse: #FFFFFF;
+
+  /* Borders & Dividers */
+  --border-default: #E2E8F0;
+  --border-subtle: #F1F5F9;
+  --border-strong: #CBD5E1;
+
+  /* Typography Fonts */
+  --font-display: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-tech: 'Rajdhani', 'JetBrains Mono', monospace;
+
+  /* Layout & Grid (8px Grid) */
+  --sidebar-width: 236px;
+  --topbar-height: 64px;
+  --max-content-width: 1280px;
+
+  /* Corner Radii */
+  --radius-xs: 4px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
+  --radius-2xl: 24px;
+  --radius-pill: 9999px;
+  --card-radius: 20px;
+
+  /* Shadows */
+  --shadow-subtle: 0 1px 3px rgba(15, 23, 42, 0.04), 0 1px 2px rgba(15, 23, 42, 0.02);
+  --shadow-card: 0 4px 20px rgba(15, 23, 42, 0.06), 0 1px 3px rgba(15, 23, 42, 0.03);
+  --shadow-hover: 0 10px 30px rgba(15, 23, 42, 0.09), 0 2px 6px rgba(15, 23, 42, 0.04);
+  --shadow-yellow: 0 6px 20px rgba(255, 199, 0, 0.35);
+  --shadow-floating: 0 20px 40px -10px rgba(15, 23, 42, 0.12);
+
+  /* Transitions */
+  --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-normal: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-spring: 350ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* Base Reset */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: var(--bg-app);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  font-size: 14px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow: hidden;
+}
+
+#root {
+  width: 100%;
+  height: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+button {
+  font-family: inherit;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  outline: none;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+input, textarea, select {
+  font-family: inherit;
+  outline: none;
+}
+
+/* Typography Utility Classes */
+.font-display {
+  font-family: var(--font-display);
+}
+
+.font-tech {
+  font-family: var(--font-tech);
+  letter-spacing: 0.04em;
+}
+
+.font-sans {
+  font-family: var(--font-sans);
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUpFade {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(255, 199, 0, 0.4);
+  }
+  50% {
+    transform: scale(1.02);
+    box-shadow: 0 0 0 12px rgba(255, 199, 0, 0);
+  }
+}
+
+@keyframes radarPing {
+  0% {
+    transform: scale(0.95);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(1.8);
+    opacity: 0;
+  }
+}
+
+.animate-fade-scale {
+  animation: slideUpFade 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-slide-up {
+  animation: slideUpFade 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Custom Scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(148, 163, 184, 0.35);
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(148, 163, 184, 0.6);
+}

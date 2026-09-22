@@ -1,0 +1,134 @@
+.voice-visualizer-container {
+  background: #FFFFFF;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-xl);
+  padding: 18px 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  box-shadow: var(--shadow-card);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.voice-visualizer-container.recording-active {
+  border-color: var(--iqoo-yellow);
+  box-shadow: 0 8px 30px rgba(255, 199, 0, 0.2);
+}
+
+.waveform-box {
+  width: 100%;
+  height: 54px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #F8FAFC;
+  border-radius: var(--radius-md);
+  padding: 8px 12px;
+  border: 1px solid var(--border-subtle);
+}
+
+.live-waveform-bars {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  height: 100%;
+}
+
+.wave-bar {
+  width: 4px;
+  border-radius: var(--radius-full);
+  background: var(--iqoo-yellow);
+  min-height: 6px;
+  box-shadow: 0 0 6px rgba(255, 199, 0, 0.5);
+}
+
+.waveform-idle-prompt {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--text-secondary);
+  font-size: 0.8125rem;
+  font-weight: 500;
+}
+
+.sparkle-hint {
+  color: #D97706;
+}
+
+.record-controls-row {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 10px;
+}
+
+.record-timer {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.8125rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  min-width: 60px;
+}
+
+.live-rec-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #E11D48;
+  box-shadow: 0 0 8px #E11D48;
+  animation: rippleWave 1.4s infinite;
+}
+
+.big-mic-trigger {
+  width: 68px;
+  height: 68px;
+  border-radius: 50%;
+  background: var(--iqoo-yellow);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #0A0D14;
+  border: 4px solid #FFFFFF;
+  cursor: pointer;
+  position: relative;
+  box-shadow: 0 6px 24px rgba(255, 199, 0, 0.45);
+  transition: all var(--transition-bounce);
+}
+
+.big-mic-trigger:hover {
+  transform: scale(1.06);
+}
+
+.big-mic-trigger.is-recording-btn {
+  background: #0A0D14;
+  color: var(--iqoo-yellow);
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.25);
+}
+
+.mic-ripple-ring {
+  position: absolute;
+  inset: -6px;
+  border-radius: 50%;
+  border: 2px solid var(--iqoo-yellow);
+  animation: rippleWave 1.8s infinite;
+}
+
+.stop-icon {
+  fill: var(--iqoo-yellow);
+}
+
+.record-status-tag {
+  font-size: 0.6875rem;
+  font-weight: 800;
+  color: var(--text-muted);
+  letter-spacing: 0.08em;
+  min-width: 60px;
+  text-align: right;
+}

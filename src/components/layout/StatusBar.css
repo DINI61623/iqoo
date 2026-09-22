@@ -1,0 +1,121 @@
+.iqoo-status-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 20px 6px;
+  background: transparent;
+  color: var(--text-primary);
+  font-size: 0.75rem;
+  font-family: var(--font-display);
+  font-weight: 700;
+  z-index: 100;
+  position: relative;
+  user-select: none;
+}
+
+.status-bar-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.status-time {
+  letter-spacing: -0.01em;
+  font-weight: 800;
+}
+
+.monster-pill-mini {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  background: var(--text-primary);
+  color: var(--iqoo-yellow);
+  font-size: 0.5625rem;
+  font-family: var(--font-tech);
+  padding: 1px 5px;
+  border-radius: var(--radius-xs);
+  letter-spacing: 0.05em;
+}
+
+.monster-mini-icon {
+  fill: var(--iqoo-yellow);
+}
+
+.camera-cutout {
+  width: 14px;
+  height: 14px;
+  background: #000000;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 50%;
+  position: relative;
+  box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.6);
+}
+
+.lens-reflection {
+  width: 4px;
+  height: 4px;
+  background: rgba(0, 102, 255, 0.6);
+  border-radius: 50%;
+  position: absolute;
+  top: 2px;
+  left: 3px;
+}
+
+.status-bar-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.network-5g {
+  font-family: var(--font-tech);
+  font-size: 0.75rem;
+  font-weight: 800;
+  color: var(--text-primary);
+}
+
+.signal-bars {
+  display: flex;
+  align-items: flex-end;
+  gap: 1.5px;
+  height: 10px;
+}
+
+.signal-bars .bar {
+  width: 2.5px;
+  background: rgba(0, 0, 0, 0.15);
+  border-radius: 0.5px;
+}
+
+.signal-bars .bar-1 { height: 30%; }
+.signal-bars .bar-2 { height: 50%; }
+.signal-bars .bar-3 { height: 75%; }
+.signal-bars .bar-4 { height: 100%; }
+
+.signal-bars .bar.active {
+  background: var(--text-primary);
+}
+
+.wifi-icon {
+  color: var(--text-primary);
+}
+
+.battery-group {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.battery-percent {
+  font-size: 0.75rem;
+  font-family: var(--font-tech);
+  font-weight: 700;
+}
+
+.battery-icon {
+  color: var(--text-primary);
+}
+
+.battery-icon.charging {
+  color: var(--iqoo-yellow);
+}
